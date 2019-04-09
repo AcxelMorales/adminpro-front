@@ -10,8 +10,7 @@
     <div class="card-body">
       <form
         class="form-horizontal form-material"
-        id="loginform"
-        action="index.html"
+        (ngSubmit)="enter()"
       >
         <a href="javascript:void(0)" class="text-center db"
           ><img src="../assets/images/logo-icon.png" alt="Home"/><br /><img
@@ -71,7 +70,7 @@
             <div class="social">
               <a
                 href="javascript:void(0)"
-                class="btn  btn-facebook"
+                class="btn  btn-facebook mr-3"
                 data-toggle="tooltip"
                 title="Login with Facebook"
               >
