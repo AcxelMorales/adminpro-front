@@ -19,7 +19,7 @@
               <a [routerLink]="['/account-settings']" routerLinkActive="active" >Account Setting</a>
             </li>
             <li>
-              <a routerLink="/login">Logout</a>
+              <a (click)="logOut()" class="pointer">Logout</a>
             </li>
           </ul>
         </li>
