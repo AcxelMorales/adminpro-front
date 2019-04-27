@@ -2,3 +2,12 @@
 .themecolors a, .pointer {
     cursor: pointer;
 }
+
+.email {
+    font-size: .6rem !important;
+    margin-bottom: 10px !important;
+}
+
+.w {
+    width: 150px;
+}
