@@ -23,7 +23,11 @@ export class SidebarComponent implements OnInit {
     this.usuario = this._usuarioService.usuario;
 
     this._modalUploadService.notification.subscribe(resp => {
-      this.usuario = resp.usuario;
+      if (this.usuario._id === resp.usuario._id) {
+        this.usuario.img = resp.usuario.img;
+      } else {
+        this.usuario = this._usuarioService.usuario; 
+      }
     });
   }
 
