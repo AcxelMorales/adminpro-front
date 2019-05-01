@@ -96,13 +96,18 @@ export class UsuarioService {
     
     return this.http.put(url, usuario).pipe(
       map((resp: any) => {
-        this.saveStorage(resp.usuario._id, this.token, resp.usuario);
+        if (usuario._id === this.usuario._id) {
+          let usuarioDB = resp.usuario;
+          this.saveStorage(resp.usuario._id, this.token, resp.usuario);
+        }
 
         Swal.fire({
-          title: 'Usuario Actualizado',
-          text: usuario.nombre,
-          type: 'success'
-        });
+          position: 'top-end',
+          type: 'success',
+          title: 'Usuario actualizado correctamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
 
         return true;
       })
@@ -123,6 +128,26 @@ export class UsuarioService {
         this.saveStorage(id, this.token, this.usuario);
       })
       .catch(err => console.error(err));
+  }
+
+  loadUsers(desde: number = 0): Observable<Object> {
+    let url = URL_SERVICE + '/usuario?since=' + desde;
+
+    return this.http.get(url);
+  }
+
+  searchUsers(termino: string): Observable<Object> {
+    let url = URL_SERVICE + '/search/collection/usuarios/' + termino;
+
+    return this.http.get(url).pipe(
+      map((resp: any) => resp.usuarios)
+    );
+  }
+
+  deleteUser(id: string): Observable<Object> {
+    let url = URL_SERVICE + '/usuario/' + id + '?token=' + this.token;
+
+    return this.http.delete(url);
   }
 
 }

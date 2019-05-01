@@ -7,11 +7,12 @@ import { URL_SERVICE } from '../config/config';
 export class ImagenPipe implements PipeTransform {
 
   transform(img: string, table: string = 'usuario'): string {
-    if (img.indexOf('https') >= 0) return img;
-
+    
     let url = URL_SERVICE + '/img';
+    
+    if (!img) return url + '/usuarios/xxx';
 
-    if (img === '') return url += '/usuarios/xxx';
+    if (img.indexOf('https') >= 0) return img;
 
     switch (table) {
       case 'usuario':
@@ -25,6 +26,7 @@ export class ImagenPipe implements PipeTransform {
         break;
       default:
         url += '/usuarios/xxx';
+        break;
     }
 
     return url;
