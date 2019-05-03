@@ -68,10 +68,7 @@ export class UsuariosComponent implements OnInit {
     }
 
     this._usuarioService.searchUsers(termino)
-      .subscribe((usuarios: any) => {
-        console.log(usuarios);
-        this.usuarios = usuarios
-      });
+      .subscribe((usuarios: any) => this.usuarios = usuarios);
   }
 
   public deleteUser(usuario: Usuario): void {

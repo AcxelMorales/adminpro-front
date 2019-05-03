@@ -23,6 +23,10 @@ export class SidebarComponent implements OnInit {
     this.usuario = this._usuarioService.usuario;
 
     this._modalUploadService.notification.subscribe(resp => {
+      if (resp.hospital) return;
+
+      if (resp.medico) return;
+
       if (this.usuario._id === resp.usuario._id) {
         this.usuario.img = resp.usuario.img;
       } else {

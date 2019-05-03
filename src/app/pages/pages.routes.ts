@@ -8,8 +8,11 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { HospitalesComponent } from './hospitales/hospitales.component';
 
 import { LoginGuard } from '../services/service.index';
+import { MedicosComponent } from './medicos/medicos.component';
+import { MedicoComponent } from './medicos/medico.component';
 
 const pagesRoutes: Routes = [
   {
@@ -24,6 +27,9 @@ const pagesRoutes: Routes = [
       { path: "account-settings", component: AccountSettingsComponent, data: { title: 'Settings Theme' } },
       { path: "profile", component: ProfileComponent, data: { title: 'Perfil de Usuario' } },
       { path: "users", component: UsuariosComponent, data: { title: 'Mantenimiento de Usuarios' } },
+      { path: "hospitals", component: HospitalesComponent, data: { title: 'Mantenimiento de Hospitales' } },
+      { path: "doctors", component: MedicosComponent, data: { title: 'Mantenimiento de Médicos' } },
+      { path: "doctor/:id", component: MedicoComponent, data: { title: 'Actualizar Médico' } },
       { path: "", redirectTo: "/dashboard", pathMatch: "full" }
     ]
   }

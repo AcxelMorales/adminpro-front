@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <input type="text" class="form-control" placeholder="Buscar usuario" #input (keyup)="searchUser(input.value)">
+        <input type="text" class="form-control" placeholder="Buscar médico" #input (keyup)="searchMedico(input.value)">
       </div>
     </div>
   </div>
@@ -21,43 +21,36 @@
 </div>
 
 <div *ngIf="!cargando" class="row animated fadeIn">
-  <div class="col-12">
+  <div class="col-md-12">
     <div class="card">
       <div class="card-body">
-        <h3 class="card-title">Usuario Registrados (<small>{{ total }}</small>)</h3>
+        <div class="d-flex justify-content-end">
+          <button [routerLink]="['/doctor', 'new']" type="button" class="btn btn-primary btn-circle">
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+        <h3 class="card-title">Médicos Registrados (<small>{{ total }}</small>)</h3>
         <table class="table table-hover">
           <thead>
             <tr>
               <th scope="col">Imagen</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Email</th>
-              <th scope="col">Role</th>
-              <th scope="col">Auth</th>
+              <th scope="col">Médico</th>
+              <th scope="col">Hospital</th>
               <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let i of usuarios">
+            <tr *ngFor="let i of medicos">
               <td class="w70">
-                <img (click)="showModal(i._id)" [src]="i.img | imagen" class="img-circle w50 pointer">
+                <img [src]="i.img | imagen:'medico'" class="w50 img-circle">
               </td>
               <td>{{ i.nombre }}</td>
-              <td>{{ i.email }}</td>
+              <td>{{ i.hospital.nombre }}</td>
               <td>
-                <select [(ngModel)]="i.role" name="role" class="form-control">
-                  <option value="ADMIN_ROLE">Administrador</option>
-                  <option value="USER_ROLE">Usuario</option>
-                </select>
-              </td>
-              <td>
-                <label *ngIf="i.google" class="label label-danger">Google</label>
-                <label *ngIf="!i.google" class="label label-info">Normal</label>
-              </td>
-              <td>
-                <button class="btn btn-primary" (click)="saveUser(i)">
-                  <i class="fa fa-save"></i>
+                <button class="btn btn-primary" [routerLink]="['/doctor', i._id]">
+                  <i class="fa fa-edit"></i>
                 </button>
-                <button class="btn btn-danger ml-3" (click)="deleteUser(i)">
+                <button class="btn btn-danger ml-3" (click)="deleteMedico(i)">
                   <i class="fa fa-trash-o"></i>
                 </button>
               </td>
