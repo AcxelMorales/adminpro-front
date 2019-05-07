@@ -30,7 +30,10 @@
           </button>
         </div>
         <h3 class="card-title">Médicos Registrados (<small>{{ total }}</small>)</h3>
-        <table class="table table-hover">
+        <div *ngIf="medicos.length === 0" class="alert alert-warning wt text-center">
+          No hay registros
+        </div>
+        <table class="table table-hover" *ngIf="medicos.length > 0">
           <thead>
             <tr>
               <th scope="col">Imagen</th>

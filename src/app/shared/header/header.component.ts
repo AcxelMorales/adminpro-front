@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/services/service.index';
 import { Usuario } from 'src/app/models/Usuario.model';
 import { ModalUploadService } from 'src/app/components/modal-upload/modal-upload.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private _usuarioService: UsuarioService,
-    private _modalUploadService: ModalUploadService
+    private _modalUploadService: ModalUploadService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -35,6 +37,10 @@ export class HeaderComponent implements OnInit {
 
   public logOut(): void {
     this._usuarioService.logOut();
+  }
+
+  public search(termino: string): void {
+    this.router.navigate(['/search', termino]);
   }
 
 }

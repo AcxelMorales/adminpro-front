@@ -12,6 +12,7 @@ import { ModalUploadService } from 'src/app/components/modal-upload/modal-upload
 export class SidebarComponent implements OnInit {
 
   usuario: Usuario;
+  menu: any[] = [];
 
   constructor(
     public _service: SidebarService,
@@ -21,6 +22,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuario = this._usuarioService.usuario;
+    this.menu = this._service.loadMenu();
 
     this._modalUploadService.notification.subscribe(resp => {
       if (resp.hospital) return;
@@ -28,6 +30,7 @@ export class SidebarComponent implements OnInit {
       if (resp.medico) return;
 
       if (this.usuario._id === resp.usuario._id) {
+        this.usuario = resp.usuario;
         this.usuario.img = resp.usuario.img;
       } else {
         this.usuario = this._usuarioService.usuario; 

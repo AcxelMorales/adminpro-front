@@ -48,11 +48,7 @@ export class RegisterComponent implements OnInit {
       this.form.value.password
     );
 
-    this._usuarioService.createUser(usuario)
-      .subscribe(
-        resp => this.router.navigate(['/login']),
-        err => console.error(err)
-      );
+    this._usuarioService.createUser(usuario).subscribe(resp => this.router.navigate(['/login']));
   }
 
   public isSame(campo1: string, campo2: string) {

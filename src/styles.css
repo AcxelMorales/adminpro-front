@@ -12,6 +12,11 @@
     width: 150px;
 }
 
+.wt {
+    width: 70% !important;
+    margin: 0 auto 1em auto !important;
+}
+
 .f-modal {
     background-color: rgba(0, 0, 0, .4);
     position: fixed;

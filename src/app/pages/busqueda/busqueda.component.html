@@ -1,0 +1,73 @@
+<div class="row animated fadeIn">
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Users</h4>
+        <table class="table table-hover">
+          <tbody>
+            <div *ngIf="usuarios.length == 0" class="alert alert-warning text-center">No hay registros</div>
+            <tr *ngFor="let i of usuarios">
+              <td>
+                <img [src]="i.img | imagen:'usuario'" alt="usuario" class="img-fluid img-circle w50">
+              </td>
+              <td>{{ i.nombre }}</td>
+              <td>
+                <a class="btn btn-info" [routerLink]="['/users']">
+                  <i class="fa fa-edit"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Doctors</h4>
+        <table class="table table-hover">
+          <tbody>
+            <div *ngIf="medicos.length == 0" class="alert alert-warning text-center">No hay registros</div>
+            <tr *ngFor="let i of medicos">
+              <td>
+                <img [src]="i.img | imagen:'medico'" alt="medico" class="img-fluid img-circle w50">
+              </td>
+              <td>{{ i.nombre }}</td>
+              <td>
+                <a class="btn btn-info" [routerLink]="['/doctor', i._id]">
+                  <i class="fa fa-edit"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Hospitals</h4>
+        <table class="table table-hover">
+          <tbody>
+            <div *ngIf="hospitales.length == 0" class="alert alert-warning text-center">No hay registros</div>
+            <tr *ngFor="let i of hospitales">
+              <td>
+              </td>
+              <td>
+                <img [src]="i.img | imagen:'hospital'" alt="hospital" class="img-fluid w50">
+              </td>
+              <td>{{ i.nombre }}</td>
+              <td>
+                <a class="btn btn-info" [routerLink]="['/hospitals']">
+                  <i class="fa fa-edit"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

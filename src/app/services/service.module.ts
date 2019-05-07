@@ -8,10 +8,11 @@ import {
   SharedService,
   SidebarService,
   UsuarioService,
-  LoginGuard,
   SubirImagenService,
   HospitalService,
-  MedicoService
+  MedicoService,
+  LoginGuard,
+  AdminGuard
 } from './service.index';
 
 @NgModule({
@@ -25,11 +26,12 @@ import {
     SharedService,
     SidebarService,
     UsuarioService,
-    LoginGuard,
     SubirImagenService,
     ModalUploadService,
     HospitalService,
-    MedicoService
+    MedicoService,
+    LoginGuard,
+    AdminGuard
   ]
 })
 export class ServiceModule { }
