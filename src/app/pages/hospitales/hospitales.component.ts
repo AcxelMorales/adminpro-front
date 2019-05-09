@@ -21,6 +21,7 @@ export class HospitalesComponent implements OnInit {
   hospitales: Hospital[] = [];
   total: number = 0;
   cargando: boolean = true;
+  desde: number = 0;
 
   constructor(
     private _hospitalService: HospitalService,

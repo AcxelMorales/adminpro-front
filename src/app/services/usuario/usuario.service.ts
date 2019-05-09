@@ -25,6 +25,29 @@ export class UsuarioService {
     this.getStorage();
   }
 
+  renewToken(): Observable<any> {
+    let url = URL_SERVICE + '/login/renewtoken?token=' + this.token;
+
+    return this.http.get(url).pipe(
+      map((resp: any) => {
+        this.token = resp.token;
+        localStorage.setItem('token', this.token);
+
+        return true;
+      })).pipe(
+        catchError(err =>
+          of([
+            Swal.fire({
+              title: 'Error',
+              text: 'Token invalido',
+              type: 'error'
+            }),
+            this.router.navigate(['/login'])
+          ])
+        )
+      );
+  }
+
   isLog(): boolean {
     return (this.token.length > 5) ? true : false;
   }
@@ -65,7 +88,6 @@ export class UsuarioService {
       })).pipe(
         catchError(err =>
           of([
-            console.log(err),
             Swal.fire({
               title: err.error.message,
               text: err.error.errors.errors.email.message,
@@ -73,7 +95,7 @@ export class UsuarioService {
             })
           ])
         )
-      );;
+      );
   }
 
   login(usuario: Usuario, recordar: boolean = false) {
@@ -155,7 +177,6 @@ export class UsuarioService {
 
         this.saveStorage(id, this.token, this.usuario, this.menu);
       })
-      .catch(err => console.error(err));
   }
 
   loadUsers(desde: number = 0): Observable<Object> {
